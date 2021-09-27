@@ -8,7 +8,7 @@ const ARTICLES_PATH = resolve(__dirname, "../../articles");
 
 async function main() {
   const user = loadConfig();
-  fetchInit(user);
+  fetchInit(user, process.argv[2]);
   // 1. 取得issues列表
   console.log("正在获取整个issues列表");
   const issuesList = await fetchIssues();

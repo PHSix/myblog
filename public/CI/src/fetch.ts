@@ -18,11 +18,10 @@ export interface Article {
   author: string;
 }
 const BASE_URL = 'https://api.github.com';
-const TOKEN = 'Z2hwX29pNW5tVnFXc21MNTdBTVhaMThUOEdpMFRzS2NPODMxdEtrOQ==';
-const token = Buffer.from(TOKEN, 'base64').toString();
+let TOKEN = '';
 const axiosReq = axios.create({
   headers: {
-    Authorization: `token ${token}`,
+    Authorization: `Bearer ${TOKEN}`,
   },
 });
 let username = null;
@@ -69,7 +68,7 @@ export async function fetchArticles(num: number): Promise<Article> {
   return article;
 }
 
-export function fetchInit(user: User) {
+export function fetchInit(user: User, githubToken: string) {
   username = user.username;
   repo = user.repo;
 }
