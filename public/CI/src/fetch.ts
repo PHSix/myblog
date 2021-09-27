@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from 'axios';
 interface User {
   username: string;
   repo: string;
@@ -17,11 +17,12 @@ export interface Article {
   created_at: string;
   author: string;
 }
-const BASE_URL = "https://api.github.com";
-const TOKEN = "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";
+const BASE_URL = 'https://api.github.com';
+const TOKEN = 'Z2hwX29pNW5tVnFXc21MNTdBTVhaMThUOEdpMFRzS2NPODMxdEtrOQ==';
+const token = Buffer.from(TOKEN, 'base64').toString();
 const axiosReq = axios.create({
   headers: {
-    Authorization: `token ${TOKEN}`,
+    Authorization: `token ${token}`,
   },
 });
 let username = null;

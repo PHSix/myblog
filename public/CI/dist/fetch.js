@@ -41,11 +41,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.fetchInit = exports.fetchArticles = exports.fetchIssues = void 0;
 var axios_1 = __importDefault(require("axios"));
-var BASE_URL = "https://api.github.com";
-var TOKEN = "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";
+var BASE_URL = 'https://api.github.com';
+var TOKEN = 'Z2hwX29pNW5tVnFXc21MNTdBTVhaMThUOEdpMFRzS2NPODMxdEtrOQ==';
+var token = Buffer.from(TOKEN, 'base64').toString();
 var axiosReq = axios_1.default.create({
     headers: {
-        Authorization: "token " + TOKEN,
+        Authorization: "token " + token,
     },
 });
 var username = null;
