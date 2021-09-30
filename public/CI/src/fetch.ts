@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, { AxiosInstance } from "axios";
 interface User {
   username: string;
   repo: string;
@@ -17,13 +17,9 @@ export interface Article {
   created_at: string;
   author: string;
 }
-const BASE_URL = 'https://api.github.com';
-let TOKEN = '';
-const axiosReq = axios.create({
-  headers: {
-    Authorization: `Bearer ${TOKEN}`,
-  },
-});
+const BASE_URL = "https://api.github.com";
+let TOKEN: string;
+let axiosReq: AxiosInstance;
 let username = null;
 let repo = null;
 
@@ -71,4 +67,9 @@ export async function fetchArticles(num: number): Promise<Article> {
 export function fetchInit(user: User, githubToken: string) {
   username = user.username;
   repo = user.repo;
+  axiosReq = axios.create({
+    headers: {
+      Authorization: `Bearer ${TOKEN}`,
+    },
+  });
 }

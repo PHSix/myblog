@@ -2,12 +2,13 @@ import { resolve } from "path";
 import { loadConfig } from "./loader";
 
 import { fetchIssues, fetchInit, fetchArticles, Article } from "./fetch";
-import { storeFile } from "./writer";
+import { storeFile, writerInit } from "./writer";
 const STORE_PATH = resolve(__dirname, "../../data.json");
 const ARTICLES_PATH = resolve(__dirname, "../../articles");
 
 async function main() {
   const user = loadConfig();
+  writerInit(ARTICLES_PATH);
   fetchInit(user, process.argv[2]);
   // 1. 取得issues列表
   console.log("正在获取整个issues列表");

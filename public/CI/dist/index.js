@@ -50,6 +50,7 @@ function main() {
             switch (_a.label) {
                 case 0:
                     user = (0, loader_1.loadConfig)();
+                    (0, writer_1.writerInit)(ARTICLES_PATH);
                     (0, fetch_1.fetchInit)(user, process.argv[2]);
                     // 1. 取得issues列表
                     console.log("正在获取整个issues列表");

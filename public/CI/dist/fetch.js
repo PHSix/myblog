@@ -41,13 +41,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.fetchInit = exports.fetchArticles = exports.fetchIssues = void 0;
 var axios_1 = __importDefault(require("axios"));
-var BASE_URL = 'https://api.github.com';
-var TOKEN = '';
-var axiosReq = axios_1.default.create({
-    headers: {
-        Authorization: "Bearer " + TOKEN,
-    },
-});
+var BASE_URL = "https://api.github.com";
+var TOKEN;
+var axiosReq;
 var username = null;
 var repo = null;
 function fetchIssues() {
@@ -108,5 +104,10 @@ exports.fetchArticles = fetchArticles;
 function fetchInit(user, githubToken) {
     username = user.username;
     repo = user.repo;
+    axiosReq = axios_1.default.create({
+        headers: {
+            Authorization: "Bearer " + TOKEN,
+        },
+    });
 }
 exports.fetchInit = fetchInit;
