@@ -18,7 +18,6 @@ export interface Article {
   author: string;
 }
 const BASE_URL = "https://api.github.com";
-let TOKEN: string;
 let axiosReq: AxiosInstance;
 let username = null;
 let repo = null;
@@ -69,7 +68,7 @@ export function fetchInit(user: User, githubToken: string) {
   repo = user.repo;
   axiosReq = axios.create({
     headers: {
-      Authorization: `Bearer ${TOKEN}`,
+      Authorization: `Bearer ${githubToken}`,
     },
   });
 }
