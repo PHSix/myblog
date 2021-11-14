@@ -15,6 +15,7 @@ export default {
   props: {
     title: {
       required: true,
+      type: String,
     },
     message: {
       required: false,
@@ -22,22 +23,22 @@ export default {
   },
   data() {
     return {
-      renderText: '',
+      renderText: "",
     };
   },
   mounted() {
-    if (this.title.length !== 0) {
-      this.typeAnimation();
-    }
+    this.typeAnimation();
   },
   methods: {
     typeAnimation() {
       const textInt = setInterval(() => {
-        if (this.renderText.length === this.title.length) {
-          clearInterval(textInt);
-          return;
+        if (this.title.length !== 0) {
+          if (this.renderText.length === this.title.length) {
+            clearInterval(textInt);
+            return;
+          }
+          this.renderText += this.title[this.renderText.length];
         }
-        this.renderText += this.title[this.renderText.length];
       }, 90);
     },
   },
@@ -45,7 +46,6 @@ export default {
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Cookie&family=Liu+Jian+Mao+Cao&family=Ma+Shan+Zheng&display=swap');
 img {
   max-width: 100%;
   min-height: 100%;
@@ -81,7 +81,7 @@ img {
   }
 }
 .banner-title {
-  font-family: 'Ma Shan Zheng', cursive;
+  font-family: "Ma Shan Zheng", cursive;
 }
 
 .underline-shape {
@@ -93,6 +93,7 @@ img {
 }
 .banner-message {
   margin-top: 1rem;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
 </style>

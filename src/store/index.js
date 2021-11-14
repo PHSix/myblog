@@ -2,11 +2,11 @@ import { createStore } from "vuex";
 
 export default createStore({
   state: {
-      issuesList: [],
+      list: [],
   },
   mutations: {
-    addIssue(state, issue) {
-      state.issuesList.push(issue);
+    addEntry(state, item) {
+      state.list.push(item);
     },
   },
   actions: {},

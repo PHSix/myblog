@@ -2,15 +2,15 @@
   <banner :title="title" ref="banner" :message="message"></banner>
   <div class="article markdown-body">
     <loading v-if="body.length === 0"></loading>
-    <div v-for="(item, idx) in body" :key="idx" v-html="item"></div>
+    <div class="man" v-html="body"></div>
   </div>
 </template>
 
 <script>
-import Banner from '../../components/Banner.vue';
-import reqTool from '../../utils/request';
-import marked from 'marked';
-import Loading from '../../components/Loading.vue';
+import Banner from "../../components/Banner.vue";
+import requests from "../../utils/request";
+import marked from "marked";
+import Loading from "../../components/Loading.vue";
 export default {
   components: {
     banner: Banner,
@@ -18,30 +18,22 @@ export default {
   },
   data() {
     return {
-      author: '',
-      created_at: '',
-      title: '',
-      body: [],
+      author: "",
+      created_at: "",
+      title: "",
+      body: "",
     };
   },
   mounted() {
-    // this.$route.params.id;
     this.getContent(this.$route.params.id);
   },
   methods: {
     async getContent(id) {
-      const resp = await Promise.all([
-        reqTool.getIssue(id),
-        reqTool.getComments(id),
-      ]);
-      this.body.push(marked(resp[0].data.body));
-      this.title = resp[0].data.title;
-      this.created_at = resp[0].data.created_at;
-      this.author = resp[0].data.user.login;
-      this.$refs.banner.typeAnimation();
-      resp[1].data.forEach((item) => {
-        this.body.push(marked(item.body));
-      });
+      const resp = (await requests.getArticle(id)).data.article;
+      this.body = marked.parse(resp.body);
+      this.title = resp.title;
+      this.created_at = resp.created_at;
+      this.author = resp.author;
     },
   },
   computed: {
@@ -59,7 +51,7 @@ export default {
         const day = d.getDay() + 1;
         return `${year}年${month}月${day}日`;
       } else {
-        return '';
+        return "";
       }
     },
   },
@@ -83,5 +75,5 @@ export default {
 </style>
 
 <style>
-@import './markdown.css';
+@import "./markdown.css";
 </style>

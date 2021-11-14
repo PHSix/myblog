@@ -19,9 +19,9 @@ export default {
     releaseTime: {
       required: true,
     },
-    body: {
-      required: true,
-    },
+    // body: {
+    //   required: true,
+    // },
     // tags: {
     //   required: true,
     // }
@@ -31,7 +31,7 @@ export default {
   },
   methods: {
     gotoArticle() {
-      this.$router.push(`/article/${this.id}`);
+      this.$router.push(`/articles/${this.id}`);
     },
   },
   computed: {

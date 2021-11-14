@@ -1,21 +1,20 @@
 <template>
   <banner title="拥抱开源，拥抱世界"></banner>
   <div style="" class="home">
-    <loading v-if="issuesList.length === 0"></loading>
+    <loading v-if="list.length === 0"></loading>
     <!-- <loading></loading> -->
     <list-item
-      v-for="(issue, idx) in issuesList"
+      v-for="(entry, idx) in list"
       :key="idx"
-      :title="issue.title"
-      :releaseTime="issue.created_at"
-      :body="issue.body"
-      :id="issue.number"
+      :title="entry.title"
+      :releaseTime="entry.created_at"
+      :id="entry.article_id"
     ></list-item>
   </div>
 </template>
 
 <script>
-import reqTool from "../../utils/request";
+import requests from "../../utils/request";
 import ListItem from "./ListItem.vue";
 import Banner from "../../components/Banner.vue";
 import Loading from "../../components/Loading.vue";
@@ -27,21 +26,21 @@ export default {
   },
   data() {
     return {
-      issuesList: this.$store.state.issuesList,
+      list: this.$store.state.list,
     };
   },
   mounted() {
-    if (this.issuesList.length === 0) {
+    if (this.list.length === 0) {
       this.requireList().then((res) => {
-        res.forEach((item) => {
-          this.$store.commit("addIssue", item);
+        res.entries.forEach((entry) => {
+          this.$store.commit("addEntry", entry);
         });
       });
     }
   },
   methods: {
     requireList: async () => {
-      const resp = await reqTool.getIssuesList();
+      const resp = await requests.getList();
       return resp.data;
     },
   },

@@ -1,12 +1,15 @@
-import { defineConfig } from 'vite';
-import { resolve } from 'path';
-import vue from '@vitejs/plugin-vue';
+import { defineConfig } from "vite";
+import { resolve } from "path";
+import vue from "@vitejs/plugin-vue";
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [vue()],
   server: {
     port: 8080,
+    proxy: {
+      "/api": "http://localhost:9023",
+    },
   },
-  resolve: { alias: { '@views': resolve(__dirname, 'src/views') } },
+  resolve: { alias: { "@views": resolve(__dirname, "src/views") } },
 });
