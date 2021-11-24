@@ -1,3 +1,13 @@
+<!-- 
+/home
+/about
+/repo 
+/article
+/login -> /admin
+/admin -> /login
+  /admin/editor
+-->
+
 <template>
   <div id="app">
     <app-bar></app-bar>
